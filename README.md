@@ -2,6 +2,10 @@
 
 ## Introduction | 简介
 
+###   RLA-YOLO network overall structure diagram
+<img src="images/RLA-YOLO.png" alt="RLA-YOLO" width="50%">
+<img src="images/Training_Deployment_Detection.png" alt="Training Deployment Detection" width="50%">
+
 Steel plate surface defect detection faces significant challenges, including frequent missed detections, false detections, and slow processing speeds. To address these issues, we propose **RLA-YOLO**, an improved defect detection model based on YOLOv8n. RLA-YOLO integrates three key innovations to enhance receptive field awareness, optimize multi-scale feature extraction, and improve loss function effectiveness.
 
 钢板表面缺陷检测面临诸多挑战，包括漏检、误检和处理速度慢等问题。为了解决这些问题，我们提出了**RLA-YOLO**，一种基于 YOLOv8n 改进的缺陷检测模型。RLA-YOLO 通过三个关键创新，提高感受野感知能力、优化多尺度特征提取，并改进损失函数的有效性。
@@ -19,14 +23,15 @@ Users can integrate these modules into their own YOLO-based models to enhance de
 本仓库提供了 RLA-YOLO 提出的三个主要创新模块的实现：
 
 1. **自适应参数共享膨胀金字塔模块（APSDP）**（仅提供 **PSDP** 模块）
-2. **C2f-Res-DRB**（包含Res-DRB）
+2. **C2f-Res-DRB**（包含Res-DRB 残差膨胀重参数块）
 3. **BSE-Loss 自适应损失函数**
 
 用户可以将这些模块集成到自己的基于 YOLO 的模型中，以提升缺陷检测性能。
 
 ## Key Modules | 关键模块
 
-### 1. Adaptive Parameter-sharing Dilated Pyramid (APSDP) | 自适应参数共享膨胀金字塔模块
+### 1. Adaptive Parameter-sharing Dilated Pyramid (APSDP) 
+<img src="images/APSDP.png" alt="APSDP" width="50%">
 
 The **APSDP module** replaces the conventional Spatial Pyramid Pooling - Fast (SPPF) module, incorporating:
 
@@ -46,7 +51,8 @@ This module significantly improves the model's capability to capture both global
 
 **注意：** 本仓库仅提供 **PSDP** 模块。
 
-### 2. Res-DRB | 残差膨胀重参数块
+### 2. C2f-Res-DRB
+<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="50%">
 
 The **Res-DRB module** is designed to replace the Bottleneck in the Coarse-to-Fine (C2F) module, featuring:
 
@@ -62,7 +68,7 @@ This module enhances the detection of complex defects, particularly those with v
 
 该模块提高了对复杂缺陷的检测能力，特别是形态和尺度变化较大的缺陷。
 
-### 3. BSE-Loss: An Adaptive Loss Function | BSE-Loss: 自适应损失函数
+### 3. BSE-Loss: An Adaptive Loss Function
 
 To tackle sample imbalance issues in defect detection, we introduce **BSE-Loss**, which replaces the traditional Binary Cross-Entropy Loss (BCE-Loss) by incorporating:
 
@@ -80,6 +86,7 @@ This loss function significantly enhances the model's ability to learn from chal
 
 ## Performance Evaluation | 性能评估
 
+### NEU-DET Dataset Results | NEU-DET 数据集结果
 RLA-YOLO was validated on the **NEU-DET** dataset, achieving:
 
 - **mAP50: 0.763** (outperforming existing methods)
@@ -92,7 +99,26 @@ RLA-YOLO was validated on the **NEU-DET** dataset, achieving:
 - **计算开销：7.5 GFLOPs**（高效处理）
 - **检测速度：105.4 FPS**（实时检测能力）
 
+#### Detection Visualization | 检测可视化对比
+Below is the detection comparison on the **NEU-DET** dataset, where RLA-YOLO demonstrates improved detection accuracy.
+
+以下是 **NEU-DET** 数据集上的检测结果对比，RLA-YOLO 在目标识别上表现更优。
+
+<img src="images/YOLOv8n_vs_Ours_NEU-DET.png" alt="YOLOv8n vs Ours on NEU-DET" width="60%">
+
+---
+
+### GC10-DET Dataset Results | GC10-DET 数据集结果
 Further experiments on the **GC10-DET** dataset confirmed the model's improved detection accuracy.
 
 进一步的实验表明，在 **GC10-DET** 数据集上，该模型的检测精度也得到了提升。
+
+#### Detection Visualization | 检测可视化对比
+The following visualization illustrates the detection performance on the **GC10-DET** dataset.
+
+以下是 **GC10-DET** 数据集的目标检测结果可视化对比。
+
+<img src="images/YOLOv8n_vs_Ours_GC10-DET.png" alt="YOLOv8n vs Ours on GC10-DET" width="60%">
+
+
 
