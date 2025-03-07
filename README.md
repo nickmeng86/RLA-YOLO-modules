@@ -1,8 +1,6 @@
 # RLA-YOLO
 
 ## Introduction | 简介
-
-###   RLA-YOLO network overall structure diagram
 <img src="images/RLA-YOLO.png" alt="RLA-YOLO" width="50%">
 <img src="images/Training_Deployment_Detection.png" alt="Training Deployment Detection" width="50%">
 
