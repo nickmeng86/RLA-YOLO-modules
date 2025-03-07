@@ -1,8 +1,8 @@
 # RLA-YOLO
 
 ## Introduction | 简介
-<img src="images/RLA-YOLO.png" alt="RLA-YOLO" class="responsive-img">
-<img src="images/Training_Deployment_Detection.png" alt="Training Deployment Detection" class="responsive-img">
+<img src="images/RLA-YOLO.png" alt="RLA-YOLO" width="50%" style="max-width: 100%; height: auto;">
+<img src="images/Training_Deployment_Detection.png" alt="Training Deployment Detection" width="50%" style="max-width: 100%; height: auto;">
 
 Steel plate surface defect detection faces significant challenges, including frequent missed detections, false detections, and slow processing speeds. To address these issues, we propose **RLA-YOLO**, an improved defect detection model based on YOLOv8n. RLA-YOLO integrates three key innovations to enhance receptive field awareness, optimize multi-scale feature extraction, and improve loss function effectiveness.
 
@@ -29,7 +29,7 @@ Users can integrate these modules into their own YOLO-based models to enhance de
 ## Key Modules | 关键模块
 
 ### 1. Adaptive Parameter-sharing Dilated Pyramid (APSDP) 
-<img src="images/APSDP.png" alt="APSDP" class="responsive-img">
+<img src="images/APSDP.png" alt="APSDP" width="50%" style="max-width: 100%; height: auto;">
 
 The **APSDP module** replaces the conventional Spatial Pyramid Pooling - Fast (SPPF) module, incorporating:
 
@@ -50,7 +50,7 @@ This module significantly improves the model's capability to capture both global
 **注意：** 本仓库仅提供 **PSDP** 模块。
 
 ### 2. C2f-Res-DRB
-<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" class="responsive-img">
+<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="50%" style="max-width: 100%; height: auto;">
 
 The **Res-DRB module** is designed to replace the Bottleneck in the Coarse-to-Fine (C2F) module, featuring:
 
@@ -102,7 +102,7 @@ Below is the detection comparison on the **NEU-DET** dataset, where RLA-YOLO dem
 
 以下是 **NEU-DET** 数据集上的检测结果对比，RLA-YOLO 在目标识别上表现更优。
 
-<img src="images/YOLOv8n_vs_Ours_NEU-DET.png" alt="YOLOv8n vs Ours on NEU-DET" class="responsive-img">
+<img src="images/YOLOv8n_vs_Ours_NEU-DET.png" alt="YOLOv8n vs Ours on NEU-DET" width="60%" style="max-width: 100%; height: auto;">
 
 ---
 
@@ -116,19 +116,4 @@ The following visualization illustrates the detection performance on the **GC10-
 
 以下是 **GC10-DET** 数据集的目标检测结果可视化对比。
 
-<img src="images/YOLOv8n_vs_Ours_GC10-DET.png" alt="YOLOv8n vs Ours on GC10-DET" class="responsive-img">
-
----
-
-<style>
-  .responsive-img {
-    width: 50%;
-  }
-
-  /* For mobile devices */
-  @media (max-width: 768px) {
-    .responsive-img {
-      width: 100%;
-    }
-  }
-</style>
+<img src="images/YOLOv8n_vs_Ours_GC10-DET.png" alt="YOLOv8n vs Ours on GC10-DET" width="60%" style="max-width: 100%; height: auto;">
