@@ -10,10 +10,10 @@ This guide explains how to apply the BSE-Loss modification to your project.
 ### 使用方法
 
 Replace the original `loss.py` file located at: `ultralytics/utils/loss.py`  
-Simply overwrite the existing file with this one to apply the BSE-Loss modifications.  
+Simply overwrite the existing file with the `loss.py` from this repository to apply the BSE-Loss modifications.  
 
-将原始的 `loss.py` 文件替换为以下路径：`ultralytics/utils/loss.py`  
-直接覆盖现有文件即可应用 BSE-Loss 修改。
+将本仓库中的 `loss.py` 文件替换原始路径下的 `ultralytics/utils/loss.py` 文件，  
+直接覆盖现有文件即可应用 BSE-Loss 修改。  
 
 ---
 
