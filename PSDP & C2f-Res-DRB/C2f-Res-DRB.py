@@ -1,4 +1,4 @@
-from other.UniRepLKNet import get_bn, get_conv2d, fuse_bn, merge_dilated_into_large_kernel
+from UniRepLKNet import get_bn, get_conv2d, fuse_bn, merge_dilated_into_large_kernel
 from ..modules.conv import Conv
 from ..modules.block import C2f
 import torch.nn as nn
