@@ -84,6 +84,25 @@ This loss function significantly enhances the model's ability to learn from chal
 
 ## Performance Evaluation | 性能评估
 
+#### Experiment Environment | 实验环境  
+The experiment was conducted on a local server with the following configuration:  
+
+- **GPU**: RTX 2080 Ti (11GB)  
+- **CPU**: Intel(R) Core(TM) i7-9800X  
+- **RAM**: 64GB  
+- **Operating System**: Windows 10  
+- **Software Environment**: Python 3.11, PyTorch 2.2.2, CUDA 12.1  
+
+实验在本地服务器上进行，具体配置如下：  
+
+- **GPU**：RTX 2080 Ti（11GB）  
+- **CPU**：Intel(R) Core(TM) i7-9800X  
+- **内存**：64GB  
+- **操作系统**：Windows 10  
+- **软件环境**：Python 3.11、PyTorch 2.2.2、CUDA 12.1  
+
+---  
+
 ### NEU-DET Dataset Results | NEU-DET 数据集结果
 RLA-YOLO was validated on the **NEU-DET** dataset, achieving:
 
