@@ -8,8 +8,6 @@ Steel plate surface defect detection faces significant challenges, including fre
 
 钢板表面缺陷检测面临诸多挑战，包括漏检、误检和处理速度慢等问题。为了解决这些问题，我们提出了**RLA-YOLO**，一种基于 YOLOv8n 改进的缺陷检测模型。RLA-YOLO 通过三个关键创新，提高感受野感知能力、优化多尺度特征提取，并改进损失函数的有效性。
 
-可以这样补充你的 **Repository Content / 仓库内容**，保持中英文对照风格，同时说明数据集结构和下载链接：
-
 ---
 
 ## Repository Content | 仓库内容
