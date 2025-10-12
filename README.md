@@ -22,11 +22,11 @@ This repository provides the implementation of the three key modules proposed in
 
 Users can integrate these modules into their own YOLO-based models to enhance defect detection performance.
 
-In this work, two datasets used in the experiments are provided, each containing the following structure:
+Two datasets used in our experiments are also provided. Each dataset includes both **images and corresponding annotation files**, organized as follows:
 
-* **origin/**: original images
-* **augmented/**: images after data augmentation
-* **classified/**: images organized by class
+* **origin/**: original images and their labels
+* **augmented/**: images after data augmentation and corresponding updated labels
+* **classified/**: images organized by class, with corresponding labels
 
 The datasets can be downloaded from this link: **XXX**
 
@@ -37,11 +37,11 @@ The datasets can be downloaded from this link: **XXX**
 2. **C2f-Res-DRB**（包含 Res-DRB 残差膨胀重参数块）
 3. **BSE-Loss 自适应损失函数**
 
-本实验所用的两个数据集也提供下载，每个数据集包含如下结构：
+本实验所用的两个数据集也提供下载，每个数据集包含 **图片及对应标注文件**，结构如下：
 
-* **origin/**：原始图片
-* **augmented/**：数据增强后的图片
-* **classified/**：按类别整理的图片
+* **origin/**：原始图片及其标注
+* **augmented/**：数据增强后的图片及相应更新的标注
+* **classified/**：按类别整理的图片及对应标注
 
 可从该链接获取数据集：**XXX**
 
