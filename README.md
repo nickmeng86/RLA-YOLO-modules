@@ -28,6 +28,7 @@ Two datasets used in our experiments are also provided. Each dataset includes bo
 * **augmented/**: images after data augmentation and corresponding updated labels
 * **classified/**: images organized by class, with corresponding labels
 
+⚠️ Datasets will be available soon! They are large and are currently being uploaded.
 The datasets can be downloaded from this link: **XXX**
 
 
@@ -43,7 +44,7 @@ The datasets can be downloaded from this link: **XXX**
 * **augmented/**：数据增强后的图片及相应更新的标注
 * **classified/**：按类别整理的图片及对应标注
 
-可从该链接获取数据集：**XXX**
+⚠️ 数据集将很快提供！数据较大，目前正在上传中。
 
 ---
 
