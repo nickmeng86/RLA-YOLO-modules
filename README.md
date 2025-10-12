@@ -28,8 +28,6 @@ Two datasets used in our experiments are also provided. Each dataset includes bo
 
 The datasets can be downloaded from this link: [Datasets.zip](https://katfile.cloud/lbhuyvghuwul/Datasets.zip.html)
 
----
-
 本仓库提供了 RLA-YOLO 提出的三个主要创新模块的实现：
 
 1. **自适应参数共享膨胀金字塔模块（APSDP）**（仅提供 **PSDP** 模块）
