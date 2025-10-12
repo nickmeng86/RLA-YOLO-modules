@@ -30,7 +30,6 @@ In this work, two datasets used in the experiments are provided, each containing
 
 The datasets can be downloaded from this link: **XXX**
 
----
 
 本仓库提供了 RLA-YOLO 提出的三个主要创新模块的实现：
 
