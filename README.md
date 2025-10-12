@@ -29,7 +29,6 @@ Two datasets used in our experiments are also provided. Each dataset includes bo
 * **classified/**: images organized by class, with corresponding labels
 
 ⚠️ Datasets will be available soon! They are large and are currently being uploaded.
-The datasets can be downloaded from this link: **XXX**
 
 
 本仓库提供了 RLA-YOLO 提出的三个主要创新模块的实现：
