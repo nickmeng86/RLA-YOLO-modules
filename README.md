@@ -26,8 +26,9 @@ Two datasets used in our experiments are also provided. Each dataset includes bo
 * **augmented/**: images after data augmentation and corresponding updated labels
 * **classified/**: images organized by class, with corresponding labels
 
-⚠️ Datasets will be available soon! They are large and are currently being uploaded.
+The datasets can be downloaded from this link: [Datasets.zip](https://katfile.cloud/lbhuyvghuwul/Datasets.zip.html)
 
+---
 
 本仓库提供了 RLA-YOLO 提出的三个主要创新模块的实现：
 
@@ -41,9 +42,7 @@ Two datasets used in our experiments are also provided. Each dataset includes bo
 * **augmented/**：数据增强后的图片及相应更新的标注
 * **classified/**：按类别整理的图片及对应标注
 
-⚠️ 数据集将很快提供！数据较大，目前正在上传中。
-
-<img src="images/upload.png" alt="upload" width="50%" style="max-width: 100%; height: auto;">
+可从该链接获取数据集：[Datasets.zip](https://katfile.cloud/lbhuyvghuwul/Datasets.zip.html)
 
 ---
 
