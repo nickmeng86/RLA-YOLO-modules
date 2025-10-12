@@ -8,6 +8,10 @@ Steel plate surface defect detection faces significant challenges, including fre
 
 钢板表面缺陷检测面临诸多挑战，包括漏检、误检和处理速度慢等问题。为了解决这些问题，我们提出了**RLA-YOLO**，一种基于 YOLOv8n 改进的缺陷检测模型。RLA-YOLO 通过三个关键创新，提高感受野感知能力、优化多尺度特征提取，并改进损失函数的有效性。
 
+可以这样补充你的 **Repository Content / 仓库内容**，保持中英文对照风格，同时说明数据集结构和下载链接：
+
+---
+
 ## Repository Content | 仓库内容
 
 This repository provides the implementation of the three key modules proposed in RLA-YOLO:
@@ -18,13 +22,31 @@ This repository provides the implementation of the three key modules proposed in
 
 Users can integrate these modules into their own YOLO-based models to enhance defect detection performance.
 
+In this work, two datasets used in the experiments are provided, each containing the following structure:
+
+* **origin/**: original images
+* **augmented/**: images after data augmentation
+* **classified/**: images organized by class
+
+The datasets can be downloaded from this link: **XXX**
+
+---
+
 本仓库提供了 RLA-YOLO 提出的三个主要创新模块的实现：
 
 1. **自适应参数共享膨胀金字塔模块（APSDP）**（仅提供 **PSDP** 模块）
-2. **C2f-Res-DRB**（包含Res-DRB 残差膨胀重参数块）
+2. **C2f-Res-DRB**（包含 Res-DRB 残差膨胀重参数块）
 3. **BSE-Loss 自适应损失函数**
 
-用户可以将这些模块集成到自己的基于 YOLO 的模型中，以提升缺陷检测性能。
+本实验所用的两个数据集也提供下载，每个数据集包含如下结构：
+
+* **origin/**：原始图片
+* **augmented/**：数据增强后的图片
+* **classified/**：按类别整理的图片
+
+可从该链接获取数据集：**XXX**
+
+---
 
 ## Key Modules | 关键模块
 
