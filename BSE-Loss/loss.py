@@ -325,14 +325,26 @@ class v8DetectionLoss:
 
         m = model.model[-1]  # Detect() module
 
+        # -----------------------------------------------------------
         # Binary Cross Entropy with Sliding Function & Exponential Weighted Moving Average Loss (BSE-Loss)
+        # Wraps nn.BCEWithLogitsLoss to apply sliding function and exponential weighted moving average,
+        # enhancing handling of hard/easy samples.
         self.bce = BSE_Loss(nn.BCEWithLogitsLoss(reduction='none'))
+        
+        # -----------------------------------------------------------
+        # Standard Binary Cross Entropy Loss (BCE)
+        # This is the default loss function if BSE-Loss is not used.
+        # self.bce = nn.BCEWithLogitsLoss(reduction='none')
+        
+        # -----------------------------------------------------------
+        # Other optional loss functions for experimentation:
+        # self.bce = SlideLoss(nn.BCEWithLogitsLoss(reduction='none'))  # Slide Loss
+        # self.bce = FocalLoss_YOLO(alpha=0.25, gamma=1.5)             # Focal Loss
+        # self.bce = VarifocalLoss_YOLO(alpha=0.75, gamma=2.0)         # Varifocal Loss
+        # self.bce = QualityfocalLoss_YOLO(beta=2.0)                   # Quality Focal Loss
+        # -----------------------------------------------------------
 
-        # self.bce = nn.BCEWithLogitsLoss(reduction="none") # Binary Cross Entropy Loss
-        # self.bce = SlideLoss(nn.BCEWithLogitsLoss(reductison='none')) # Slide Loss
-        # self.bce = FocalLoss_YOLO(alpha=0.25, gamma=1.5) # FocalLoss
-        # self.bce = VarifocalLoss_YOLO(alpha=0.75, gamma=2.0) # VarifocalLoss
-        # self.bce = QualityfocalLoss_YOLO(beta=2.0) # QualityfocalLoss
+        
         self.hyp = h
         self.stride = m.stride  # model strides
         self.nc = m.nc  # number of classes
@@ -1207,3 +1219,4 @@ class E2EDetectLoss:
         one2one = preds["one2one"]
         loss_one2one = self.one2one(one2one, batch)
         return loss_one2many[0] + loss_one2one[0], loss_one2many[1] + loss_one2one[1]
+
