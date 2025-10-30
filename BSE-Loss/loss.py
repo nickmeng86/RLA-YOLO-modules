@@ -330,12 +330,10 @@ class v8DetectionLoss:
         # Wraps nn.BCEWithLogitsLoss to apply sliding function and exponential weighted moving average,
         # enhancing handling of hard/easy samples.
         self.bce = BSE_Loss(nn.BCEWithLogitsLoss(reduction='none'))
-        
         # -----------------------------------------------------------
         # Standard Binary Cross Entropy Loss (BCE)
         # This is the default loss function if BSE-Loss is not used.
         # self.bce = nn.BCEWithLogitsLoss(reduction='none')
-        
         # -----------------------------------------------------------
         # Other optional loss functions for experimentation:
         # self.bce = SlideLoss(nn.BCEWithLogitsLoss(reduction='none'))  # Slide Loss
@@ -1219,4 +1217,5 @@ class E2EDetectLoss:
         one2one = preds["one2one"]
         loss_one2one = self.one2one(one2one, batch)
         return loss_one2many[0] + loss_one2one[0], loss_one2many[1] + loss_one2one[1]
+
 
