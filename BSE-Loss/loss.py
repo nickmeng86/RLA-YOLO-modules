@@ -15,55 +15,37 @@ import math
 class BSE_Loss:
     def __init__(self, loss_fcn, decay=0.999, tau=2000):
         super(BSE_Loss, self).__init__()
-
-        # Step 1: Initialize loss function and set the reduction mode to 'none'
-        # 步骤1：初始化损失函数并将reduction模式设置为'none'
-        # The loss function setup and reduction change has been removed for protection
-        # 损失函数设置和reduction模式更改已删除以保护代码
-
-        # Step 2: Initialize decay function for modulating the IOU
-        # 步骤2：初始化用于调节IOU的衰减函数
-        # The decay function is based on exponential decay and parameters decay and tau
-        # 衰减函数基于指数衰减，并使用了衰减和tau参数
-
-        # Step 3: Initialize training flag and update tracking
-        # 步骤3：初始化训练标志和更新跟踪
-        # The training flag (is_train) is set to True, and updates are tracked
-        # 训练标志(is_train)被设置为True，更新次数被跟踪
-
-        # Step 4: Set initial IOU mean value
-        # 步骤4：设置初始的IOU均值
-        # The initial IOU mean is set to 1.0
-        # 初始的IOU均值被设置为1.0
+        self.loss_fcn = loss_fcn
+        self.reduction = loss_fcn.reduction
+        self.loss_fcn.reduction = 'none'  # required to apply SL to each element
+        self.decay = lambda x: decay * (1 - math.exp(-x / tau))
+        self.is_train = True
+        self.updates = 0
+        self.iou_mean = 1.0
 
     def __call__(self, pred, true, auto_iou=0.5):
-        # Step 5: Apply the decay and update IOU mean during training
-        # 步骤5：在训练过程中应用衰减并更新IOU均值
-        # The IOU mean is updated using decay function and auto_iou value
-        # IOU均值通过衰减函数和auto_iou值更新
-
-        # Step 6: Calculate the base loss
-        # 步骤6：计算基础损失
-        # The base loss is computed using the provided loss function
-        # 基础损失通过提供的损失函数计算
-
-        # Step 7: Define conditions for modulating the loss based on IOU thresholds
-        # 步骤7：根据IOU阈值定义调节损失的条件
-        # Conditions are applied to modulate the weight of the loss based on IOU
-        # 根据IOU应用条件来调节损失的权重
-
-        # Step 8: Apply modulating weight to the loss
-        # 步骤8：将调节权重应用到损失上
-        # The modulating weight is used to modify the loss
-        # 调节权重用于修改损失
-
-        # Step 9: Return the final loss value based on reduction mode
-        # 步骤9：根据reduction模式返回最终损失值
-        # Final loss is returned based on the specified reduction mode
-        # 根据指定的reduction模式返回最终损失值
-
-        pass
-
+        if self.is_train and auto_iou != -1:
+            self.updates += 1
+            d = self.decay(self.updates)
+            self.iou_mean = d * self.iou_mean + (1 - d) * float(auto_iou.detach())
+        auto_iou = self.iou_mean
+        loss = self.loss_fcn(pred, true)
+        if auto_iou < 0.2:
+            auto_iou = 0.2
+        b1 = true <= auto_iou - 0.1
+        a1 = 1.0
+        b2 = (true > (auto_iou - 0.1)) & (true < auto_iou)
+        a2 = math.exp(1.0 - auto_iou)
+        b3 = true >= auto_iou
+        a3 = torch.exp(-(true - 1.0))
+        modulating_weight = a1 * b1 + a2 * b2 + a3 * b3
+        loss *= modulating_weight
+        if self.reduction == 'mean':
+            return loss.mean()
+        elif self.reduction == 'sum':
+            return loss.sum()
+        else:  # 'none'
+            return loss
 
 
 class SlideLoss(nn.Module):
@@ -342,8 +324,11 @@ class v8DetectionLoss:
         h = model.args  # hyperparameters
 
         m = model.model[-1]  # Detect() module
-        # self.bce = nn.BCEWithLogitsLoss(reduction="none")
-        self.bce = BSE_Loss(nn.BCEWithLogitsLoss(reduction='none'))  # Exponential Moving Average Slide Loss
+
+        # Binary Cross Entropy with Sliding Function & Exponential Weighted Moving Average Loss (BSE-Loss)
+        self.bce = BSE_Loss(nn.BCEWithLogitsLoss(reduction='none'))
+
+        # self.bce = nn.BCEWithLogitsLoss(reduction="none") # Binary Cross Entropy Loss
         # self.bce = SlideLoss(nn.BCEWithLogitsLoss(reductison='none')) # Slide Loss
         # self.bce = FocalLoss_YOLO(alpha=0.25, gamma=1.5) # FocalLoss
         # self.bce = VarifocalLoss_YOLO(alpha=0.75, gamma=2.0) # VarifocalLoss
