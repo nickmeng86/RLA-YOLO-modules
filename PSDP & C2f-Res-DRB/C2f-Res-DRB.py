@@ -1,4 +1,4 @@
-from UniRepLKNet import get_bn, get_conv2d, fuse_bn, merge_dilated_into_large_kernel
+from other.UniRepLKNet import get_bn, get_conv2d, fuse_bn, merge_dilated_into_large_kernel
 from ..modules.conv import Conv
 from ..modules.block import C2f
 import torch.nn as nn
@@ -32,11 +32,19 @@ class DilatedReparamBlock(nn.Module):
         elif kernel_size == 9:
             self.kernel_sizes = [5, 5, 3, 3]
             self.dilates = [1, 2, 3, 4]
+        # elif kernel_size == 7:
+        #     self.kernel_sizes = [5, 3, 3]
+        #     self.dilates = [1, 2, 3]
+        # elif kernel_size == 5:
+        #     self.kernel_sizes = [3, 3]
+        #     self.dilates = [1, 2]
+
+        # Use for Light_DRB
         elif kernel_size == 7:
-            self.kernel_sizes = [5, 3, 3]
+            self.kernel_sizes = [7, 3, 3]
             self.dilates = [1, 2, 3]
         elif kernel_size == 5:
-            self.kernel_sizes = [3, 3]
+            self.kernel_sizes = [5, 3]
             self.dilates = [1, 2]
         else:
             raise ValueError('Dilated Reparam Block requires kernel_size >= 5')
@@ -50,55 +58,58 @@ class DilatedReparamBlock(nn.Module):
                                            bias=False))
                 self.__setattr__('dil_bn_k{}_{}'.format(k, r), get_bn(channels, use_sync_bn=use_sync_bn))
 
+    def forward(self, x):
+        if not hasattr(self, 'origin_bn'):      # deploy mode
+            return self.lk_origin(x)
+        out = self.origin_bn(self.lk_origin(x))
+        for k, r in zip(self.kernel_sizes, self.dilates):
+            conv = self.__getattr__('dil_conv_k{}_{}'.format(k, r))
+            bn = self.__getattr__('dil_bn_k{}_{}'.format(k, r))
+            out = out + bn(conv(x))
+        return out
+
+    def switch_to_deploy(self):
+        if hasattr(self, 'origin_bn'):
+            origin_k, origin_b = fuse_bn(self.lk_origin, self.origin_bn)
+            for k, r in zip(self.kernel_sizes, self.dilates):
+                conv = self.__getattr__('dil_conv_k{}_{}'.format(k, r))
+                bn = self.__getattr__('dil_bn_k{}_{}'.format(k, r))
+                branch_k, branch_b = fuse_bn(conv, bn)
+                origin_k = merge_dilated_into_large_kernel(origin_k, branch_k, r)
+                origin_b += branch_b
+            merged_conv = get_conv2d(origin_k.size(0), origin_k.size(0), origin_k.size(2), stride=1,
+                                    padding=origin_k.size(2)//2, dilation=1, groups=origin_k.size(0), bias=True,
+                                    attempt_use_lk_impl=self.attempt_use_lk_impl)
+            merged_conv.weight.data = origin_k
+            merged_conv.bias.data = origin_b
+            self.lk_origin = merged_conv
+            self.__delattr__('origin_bn')
+            for k, r in zip(self.kernel_sizes, self.dilates):
+                self.__delattr__('dil_conv_k{}_{}'.format(k, r))
+                self.__delattr__('dil_bn_k{}_{}'.format(k, r))
+
 class Res_DRB(nn.Module):
     def __init__(self, dim, act=True) -> None:
         super().__init__()
 
-        # Step 1: Initialize a convolutional layer with 3x3 kernel size
-        # 步骤1：初始化一个3x3卷积层
-        # The actual convolutional operation has been removed for protection
-        # 实际的卷积操作已删除以保护代码
+        self.conv_3x3 = Conv(dim, dim // 2, 3, act=act)
 
-        # Step 2: Initialize other convolutional layers with different dilation rates
-        # 步骤2：初始化其他具有不同膨胀率的卷积层
-        # These layers are removed to prevent exposing the core logic
-        # 这些层已删除以防止泄露核心逻辑
+        self.conv_3x3_d1 = Conv(dim // 2, dim, 3, d=1, act=act)
+        self.conv_3x3_d3 = DilatedReparamBlock(dim // 2, 5)
+        self.conv_3x3_d5 = DilatedReparamBlock(dim // 2, 7)
 
-        # Step 3: Initialize 1x1 convolutional layer
-        # 步骤3：初始化一个1x1卷积层
-        # The actual 1x1 convolution layer has been removed to protect the design
-        # 实际的1x1卷积层已删除以保护设计
+        self.conv_1x1 = Conv(dim * 2, dim, k=1, act=act)
 
     def forward(self, x):
-        # Step 4: Apply initial 3x3 convolution
-        # 步骤4：应用初始的3x3卷积
-        # The actual convolution is removed
-        # 实际的卷积操作已删除
+        conv_3x3 = self.conv_3x3(x)
+        x1, x2, x3 = self.conv_3x3_d1(conv_3x3), self.conv_3x3_d3(conv_3x3), self.conv_3x3_d5(conv_3x3)
+        x_out = torch.cat([x1, x2, x3], dim=1)
+        x_out = self.conv_1x1(x_out) + x
+        return x_out
 
-        # Step 5: Apply dilated convolution blocks with different dilation rates
-        # 步骤5：应用具有不同膨胀率的膨胀卷积块
-        # The dilated convolution operations have been removed
-        # 膨胀卷积操作已删除
-
-        # Step 6: Concatenate outputs of dilated convolutions
-        # 步骤6：拼接膨胀卷积的输出
-        # Concatenation logic has been removed for protection
-        # 拼接逻辑已删除以保护代码
-
-        # Step 7: Apply 1x1 convolution and add residual connection
-        # 步骤7：应用1x1卷积并加上残差连接
-        # This operation has been removed
-        # 此操作已删除
-        pass
 
 
 class C2f_Res_DRB(C2f):
     def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
         super().__init__(c1, c2, n, shortcut, g, e)
-
-        # Step 8: Initialize a list of Res_DRB blocks
-        # 步骤8：初始化Res_DRB块的列表
-        # The list initialization has been removed
-        # 列表初始化已删除
-        pass
-
+        self.m = nn.ModuleList(Res_DRB(self.c) for _ in range(n))
