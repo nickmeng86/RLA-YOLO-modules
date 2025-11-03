@@ -56,6 +56,8 @@ This module enhances the detection of complex defects, particularly those with v
 
 ### 3. BSE-Loss: An Adaptive Loss Function
 
+<img src="images/Loss.png" alt="BSE-Loss" width="60%" style="max-width: 50%; height: auto;">
+
 To tackle sample imbalance issues in defect detection, we introduce **BSE-Loss**, which replaces the traditional Binary Cross-Entropy Loss (BCE-Loss) by incorporating:
 
 * **Slide Weighting Function:** Adjusts weights dynamically to emphasize hard-to-classify samples.
