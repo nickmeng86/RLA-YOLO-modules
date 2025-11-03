@@ -106,3 +106,12 @@ Further experiments on the **GC10-DET** dataset confirmed the model's improved d
 The following visualization illustrates the detection performance on the **GC10-DET** dataset.
 
 <img src="images/detect_gc10_tiny.png" alt="Detect on GC10-DET" width="70%" style="max-width: 100%; height: auto;">
+
+---
+
+## Erratum | 勘误
+
+We discovered that the structural diagram of the **C2f-Res-DRB** module in our publication [RLA-YOLO](https://doi.org/10.1016/j.dsp.2025.105700) was incorrect. The error originated from referencing an online blog, which did not match the actual implementation in the source code. This repository **has corrected the diagram**, and the image here reflects the **accurate structure** of the module.
+
+
+
