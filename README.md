@@ -48,7 +48,7 @@ This module significantly improves the model's capability to capture both global
 
 ### 2. C2f-Res-DRB
 
-<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="65%" style="max-width: 100%; height: auto;">
+<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="60%" style="max-width: 100%; height: auto;">
 
 The **Res-DRB module** is designed to replace the Bottleneck in the Coarse-to-Fine (C2F) module, featuring:
 
