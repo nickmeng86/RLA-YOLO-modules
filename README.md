@@ -1,9 +1,6 @@
-# RLA-YOLO
+<img src="images/RLA-YOLO_banner.png" alt="RLA-YOLO" width="80%" style="max-width: 100%; height: auto;">
 
 ## Introduction
-
-<img src="images/RLA-YOLO.png" alt="RLA-YOLO" width="50%" style="max-width: 100%; height: auto;">
-<img src="images/Training_Deployment_Detection.png" alt="Training Deployment Detection" width="50%" style="max-width: 100%; height: auto;">
 
 Steel plate surface defect detection faces significant challenges, including frequent missed detections, false detections, and slow processing speeds. To address these issues, we propose **RLA-YOLO**, an improved defect detection model based on YOLOv8n. RLA-YOLO integrates three key innovations to enhance receptive field awareness, optimize multi-scale feature extraction, and improve loss function effectiveness.
 
