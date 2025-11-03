@@ -48,7 +48,7 @@ This module significantly improves the model's capability to capture both global
 
 ### 2. C2f-Res-DRB
 
-<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="50%" style="max-width: 100%; height: auto;">
+<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="70%" style="max-width: 100%; height: auto;">
 
 The **Res-DRB module** is designed to replace the Bottleneck in the Coarse-to-Fine (C2F) module, featuring:
 
@@ -96,7 +96,7 @@ RLA-YOLO was validated on the **NEU-DET** dataset, achieving:
 
 Below is the detection comparison on the **NEU-DET** dataset, where RLA-YOLO demonstrates improved detection accuracy.
 
-<img src="images/detect_neu" alt="Detect on NEU-DET" width="60%" style="max-width: 100%; height: auto;">
+<img src="images/detect_neu.png" alt="Detect on NEU-DET" width="60%" style="max-width: 100%; height: auto;">
 
 ---
 
@@ -108,4 +108,4 @@ Further experiments on the **GC10-DET** dataset confirmed the model's improved d
 
 The following visualization illustrates the detection performance on the **GC10-DET** dataset.
 
-<img src="images/detect_gc10_tiny" alt="Detect on GC10-DET" width="60%" style="max-width: 100%; height: auto;">
+<img src="images/detect_gc10_tiny.png" alt="Detect on GC10-DET" width="60%" style="max-width: 100%; height: auto;">
