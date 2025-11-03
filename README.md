@@ -1,4 +1,4 @@
-<img src="images/RLA-YOLO_banner.png" alt="RLA-YOLO" width="80%" style="max-width: 100%; height: auto;">
+<img src="images/RLA-YOLO_banner.png" alt="RLA-YOLO" width="100%" style="max-width: 100%; height: auto;">
 
 ## Introduction
 
