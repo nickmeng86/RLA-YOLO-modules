@@ -8,9 +8,9 @@ Manual inspection in steel manufacturing is inefficient and costly, creating a n
 
 This repository provides the implementation of the three key modules proposed in RLA-YOLO:
 
-1. **Adaptive Parameter-sharing Dilated Pyramid (APSDP)** (Only **PSDP** module is provided)
-2. **C2f-Res-DRB** (Include Res-DRB)
-3. **BSE-Loss**
+1. [**Adaptive Parameter-sharing Dilated Pyramid (APSDP)**](https://github.com/nickmeng86/RLA-YOLO-modules/tree/main/PSDP%20%26%20C2f-Res-DRB) (Only **PSDP** module is provided)
+2. [**C2f-Res-DRB**](https://github.com/nickmeng86/RLA-YOLO-modules/tree/main/PSDP%20%26%20C2f-Res-DRB) (Include Res-DRB)
+3. [**BSE-Loss**](https://github.com/nickmeng86/RLA-YOLO-modules/tree/main/BSE-Loss)
 
 Users can integrate these modules into their own YOLO-based models to enhance defect detection performance.
 
