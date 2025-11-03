@@ -96,7 +96,7 @@ RLA-YOLO was validated on the **NEU-DET** dataset, achieving:
 
 Below is the detection comparison on the **NEU-DET** dataset, where RLA-YOLO demonstrates improved detection accuracy.
 
-<img src="images/YOLOv8n_vs_Ours_NEU-DET.png" alt="YOLOv8n vs Ours on NEU-DET" width="60%" style="max-width: 100%; height: auto;">
+<img src="images/detect_neu" alt="Detect on NEU-DET" width="60%" style="max-width: 100%; height: auto;">
 
 ---
 
@@ -108,4 +108,4 @@ Further experiments on the **GC10-DET** dataset confirmed the model's improved d
 
 The following visualization illustrates the detection performance on the **GC10-DET** dataset.
 
-<img src="images/YOLOv8n_vs_Ours_GC10-DET.png" alt="YOLOv8n vs Ours on GC10-DET" width="60%" style="max-width: 100%; height: auto;">
+<img src="images/detect_gc10_tiny" alt="Detect on GC10-DET" width="60%" style="max-width: 100%; height: auto;">
