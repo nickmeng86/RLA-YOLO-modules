@@ -29,7 +29,7 @@ The datasets can be downloaded from this link: [Datasets.zip](https://katfile.cl
 
 ## Erratum
 
-We discovered that the structural diagram of the **C2f-Res-DRB** module in our publication [RLA-YOLO](https://doi.org/10.1016/j.dsp.2025.105700) was incorrect. The error originated from referencing an online blog, which did not match the actual implementation in the source code. This repository **has corrected the diagram**, and the image here reflects the **accurate structure** of the module.
+We discovered that the structural diagram of the **C2f-Res-DRB** module in our published paper was incorrect. The mistake resulted from referencing an online blog whose structure did not match the actual implementation in the source code. This repository **has corrected the diagram**, and the image provided here reflects the **accurate architecture** of the module.
 
 ---
 
