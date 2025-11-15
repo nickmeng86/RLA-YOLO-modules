@@ -2,8 +2,8 @@
 
 Manual inspection in steel manufacturing is inefficient and costly, creating a need for automated high-speed defect detection. We propose **RLA-YOLO**, an improved steel surface defect detection model based on YOLOv8n. It introduces three key innovations to enhance receptive field, optimize multi-scale feature extraction, and improve loss function effectiveness. Experiments on NEU-DET and GC10-DET show that RLA-YOLO achieves higher accuracy, lower computational cost, and real-time performance, making it suitable for deployment on resource-constrained devices.
 
-The related paper has been published in **Digital Signal Processing (Elsevier)** as:
-**[RLA-YOLO: A Lightweight and Accurate Method for Real-Time Steel Plate Defect Detection](https://doi.org/10.1016/j.dsp.2025.105700)**.
+The related paper has been published in ***Digital Signal Processing (Elsevier)*** as:
+***[RLA-YOLO: A Lightweight and Accurate Method for Real-Time Steel Plate Defect Detection](https://doi.org/10.1016/j.dsp.2025.105700)***.
 
 ---
 
@@ -29,7 +29,7 @@ The datasets can be downloaded from this link: [Datasets.zip](https://katfile.cl
 
 ## Erratum
 
-We discovered that the structural diagram of the **C2f-Res-DRB** module in our published paper was incorrect. The mistake resulted from referencing an online blog whose structure did not match the actual implementation in the source code. This repository **has corrected the diagram**, and the image provided here reflects the **accurate architecture** of the module.
+We discovered that the structural diagram of the C2f-Res-DRB module in our published paper was incorrect. The mistake resulted from referencing an online blog whose structure did not match the actual implementation in the source code. This repository has corrected the diagram, and the image provided here reflects the accurate architecture of the module.
 
 ---
 
