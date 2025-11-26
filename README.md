@@ -34,7 +34,7 @@ We discovered that the structural diagram of the C2f-Res-DRB in our published pa
 
 ### 1. Adaptive Parameter-sharing Dilated Pyramid (APSDP)
 
-<img src="images/APSDP.png" alt="APSDP" width="50%" style="max-width: 100%; height: auto;">
+<img src="images/APSDP.png" alt="APSDP" width="60%" style="max-width: 100%; height: auto;">
 
 The **APSDP module** replaces the conventional SPPF module, incorporating:
 
@@ -49,7 +49,7 @@ This module significantly improves the model's capability to capture both global
 
 ### 2. C2f-Residual Dilated Reparam Block (C2f-Res-DRB)
 
-<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="60%" style="max-width: 100%; height: auto;">
+<img src="images/C2F-Res-DRB.png" alt="C2F-Res-DRB" width="70%" style="max-width: 100%; height: auto;">
 
 The **Res-DRB** is designed to replace the Bottleneck in the C2F module, featuring:
 
@@ -62,7 +62,7 @@ This module enhances the detection of complex defects, particularly those with v
 
 ### 3. BSE-Loss: An Adaptive Loss Function
 
-<img src="images/after-slideloss.png" alt="BSE-Loss" width="50%" style="max-width: 50%; height: auto;">
+<img src="images/after-slideloss.png" alt="BSE-Loss" width="60%" style="max-width: 50%; height: auto;">
 
 To tackle sample imbalance issues in defect detection, we introduce **BSE-Loss**, which builds upon the Binary Cross-Entropy Loss (BCE-Loss) by incorporating:
 
